@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Video Monitoring System</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-$END$
+    <h1>Welcome to Video Monitoring System</h1>
+    <a href="{{ url_for('auth.login') }}">Login</a>
+    <a href="{{ url_for('video.stream') }}">Live Video</a>
+    <a href="{{ url_for('video.snapshots') }}">Snapshots</a>
+    <a href="{{ url_for('video.playback') }}">Playback</a>
 </body>
 </html>
