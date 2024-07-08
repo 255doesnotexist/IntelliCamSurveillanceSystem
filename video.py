@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, send_file, Response
+from flask import Blueprint, request, jsonify, send_file, Response, abort
 import cv2
 import os
 import time
@@ -61,7 +61,9 @@ def stop_recording():
 
 @video_bp.route('/snapshots', methods=['GET'])
 def get_snapshots():
-    snapshot_dir = 'path_to_snapshot_directory'
+    snapshot_dir = 'path_to_snapshot_directory'  # 请确保这个路径存在
+    if not os.path.exists(snapshot_dir):
+        return jsonify({"status": "error", "message": "Snapshot directory not found"}), 404
     snapshots = os.listdir(snapshot_dir)
     return jsonify({"snapshots": snapshots})
 
@@ -78,4 +80,6 @@ def backup_snapshots():
 @video_bp.route('/playback', methods=['GET'])
 def get_video_playback():
     video_file = request.args.get('video_file')
+    if not video_file or not os.path.isfile(video_file):
+        return jsonify({"status": "error", "message": "Video file not found"}), 404
     return send_file(video_file, mimetype='video/mp4')
