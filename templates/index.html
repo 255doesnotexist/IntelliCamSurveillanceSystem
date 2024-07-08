@@ -7,8 +7,8 @@
 <body>
     <h1>Welcome to Video Monitoring System</h1>
     <a href="{{ url_for('auth.login') }}">Login</a>
-    <a href="{{ url_for('video.stream') }}">Live Video</a>
-    <a href="{{ url_for('video.snapshots') }}">Snapshots</a>
-    <a href="{{ url_for('video.playback') }}">Playback</a>
+    <a href="{{ url_for('video.get_video_stream') }}">Live Video</a>
+    <a href="{{ url_for('video.get_snapshots') }}">Snapshots</a>
+    <a href="{{ url_for('video.get_video_playback') }}">Playback</a>
 </body>
 </html>

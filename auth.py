@@ -1,10 +1,8 @@
 from flask import Blueprint, request, jsonify, session
 import json
-from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
+from flask_login import login_user, logout_user, login_required, UserMixin, current_user
 
 auth_bp = Blueprint('auth', __name__)
-login_manager = LoginManager()
-login_manager.init_app(app)
 
 
 class User(UserMixin):
@@ -17,7 +15,6 @@ def load_users():
         return json.load(f)
 
 
-@login_manager.user_loader
 def load_user(username):
     users = load_users()
     if username in users:
@@ -27,6 +24,9 @@ def load_user(username):
 
 @auth_bp.route('/login', methods=['POST'])
 def login():
+    if request.content_type != 'application/json':
+        return jsonify({"status": "error", "message": "Unsupported Media Type"}), 415
+
     data = request.json
     username = data.get('username')
     password = data.get('password')
@@ -50,7 +50,7 @@ def logout():
 @auth_bp.route('/user/devices', methods=['GET'])
 @login_required
 def get_user_devices():
-    username = session['user_id']
+    username = current_user.id
     users = load_users()
     if username in users:
         return jsonify(users[username]['devices'])
