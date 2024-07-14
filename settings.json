@@ -1,5 +1,20 @@
 {
-    "setting1": "value1",
-    "setting2": "value2",
-    "setting3": "value3"
+    "devices": {
+        "device1": {
+            "name": "Device 1",
+            "rtsp_url": "rtsp://example.com/device1"
+        },
+        "device2": {
+            "name": "Device 2",
+            "rtsp_url": "rtsp://example.com/device2"
+        },
+        "device3": {
+            "name": "Device 3",
+            "rtsp_url": "rtsp://example.com/device3"
+        },
+        "device4": {
+            "name": "Device 4",
+            "rtsp_url": "rtsp://example.com/device4"
+        }
+    }
 }

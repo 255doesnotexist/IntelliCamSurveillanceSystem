@@ -1,10 +1,16 @@
 {
     "user1": {
         "password": "password1",
-        "devices": ["device1", "device2"]
+        "devices": [
+            "device1",
+            "device2"
+        ]
     },
     "user2": {
         "password": "password2",
-        "devices": ["device3", "device4"]
+        "devices": [
+            "device3",
+            "device4"
+        ]
     }
 }
